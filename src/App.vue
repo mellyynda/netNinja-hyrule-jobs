@@ -1,10 +1,18 @@
 <template>
-  <div><JobList :jobs="jobs" /></div>
+<div class="app">
+  <header>
+    <button @click="handleClick('title')">order by title</button>
+    <button @click="handleClick('location')">order by location</button>
+    <button @click="handleClick('salary')">order by salary</button>
+  </header>
+  <JobList :jobs="jobs" :order="order" />
+</div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import Job from "./types/Job"
+import OrderTerm from "./types/OrderTerm"
 import JobList from "./components/JobList.vue"
 
 export default defineComponent({
@@ -18,11 +26,33 @@ export default defineComponent({
       { title: 'fisherman', location: 'lake hylia', salary: 21000, id: '4' },
       { title: 'prison guard', location: 'gerudo valley', salary: 32000, id: '5' }
     ])
+    const order = ref<OrderTerm>('title')
 
-    return { jobs }
+    const handleClick = (term: OrderTerm) => {
+      order.value = term
+      
+    }
+
+    return { jobs, handleClick, order }
   },
 });
 </script>
 
 <style>
+header {
+  text-align: center;
+}
+header .order {
+  margin-top: 20px;
+}
+button {
+  margin: 0 10px;
+  color: #1195c9;
+  border: 3px solid #1195c9;
+  background: #d5f0ff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
 </style>

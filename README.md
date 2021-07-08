@@ -1,4 +1,7 @@
 # hyrule-jobs
+NetNinja tutorial project with Typescript and Vue3.
+
+[Published with github pages](https://mellyynda.github.io/netNinja-hyrule-jobs/)
 
 ## Project setup
 ```
